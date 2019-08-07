@@ -6,9 +6,7 @@
 /**
  * @description 设置当前的权限字段
  */
-function permission(keys) {
-    console.log(keys);
-
+function permission() {
     return function(target) {
         function toString() {
             return 'toString';
