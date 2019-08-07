@@ -1,0 +1,12 @@
+# libs
+node_modules
+
+#build
+build
+
+# log file
+*.log
+
+# lock file
+*.lock
+package-lock.json
