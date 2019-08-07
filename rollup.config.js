@@ -38,7 +38,8 @@ module.exports = {
             ? [
                   // customize your alias here
                   alias({
-                      //   utils: 'src/utils'
+                      '@': 'src',
+                      utils: 'src/utils'
                   }),
                   replace({
                       __DEV__: isDev

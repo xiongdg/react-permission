@@ -1,5 +1,6 @@
-function a() {
-    console.log('asd');
-}
+/**
+ * @description export
+ */
+import permission from './decorator/permission';
 
-export default a;
+export default permission;
