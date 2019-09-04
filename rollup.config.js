@@ -7,7 +7,7 @@ const babel = require('rollup-plugin-babel');
 const del = require('rollup-plugin-delete');
 const alias = require('rollup-plugin-alias');
 const replace = require('rollup-plugin-replace');
-const { exportName } = require('./package.json');
+const { exportName, dependencies } = require('./package.json');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -17,38 +17,32 @@ dotenv.config({
 
 module.exports = {
     input: 'src/index.js',
-    output: [
-        {
-            file: `${process.env.BUILD_PATH}/${exportName}.cjs.js`,
-            format: 'cjs'
-        },
-        {
-            name: `${exportName}`,
-            file: `${process.env.BUILD_PATH}/${exportName}.umd.js`,
-            format: 'umd'
+    external: Object.keys(dependencies),
+    output: {
+        name: `${exportName}`,
+        file: `${process.env.BUILD_PATH}/${exportName}.umd.js`,
+        format: 'umd',
+        moduleName: exportName,
+        globals: {
+            react: 'React'
         }
-    ],
+    },
     plugins: [
         babel({
             include: ['src/**/*'],
             exclude: ['node_modules/**']
         })
-    ].concat(
-        isDev
-            ? [
-                  // customize your alias here
-                  alias({
-                      '@': 'src',
-                      utils: 'src/utils'
-                  }),
-                  replace({
-                      __DEV__: isDev
-                  })
-              ]
-            : [
-                  del({
-                      targets: `dist/*`
-                  })
-              ]
-    )
+    ].concat([
+        // customize your alias here
+        alias({
+            '@': 'src',
+            utils: 'src/utils'
+        }),
+        replace({
+            __DEV__: isDev
+        }),
+        del({
+            targets: `dist/*`
+        })
+    ])
 };

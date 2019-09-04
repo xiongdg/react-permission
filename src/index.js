@@ -1,6 +1,12 @@
-/**
- * @description export
- */
-import permission from './decorator/permission';
+import React from 'react';
 
-export default permission;
+function Guardian() {
+    return function({ children: C, ...rest }) {
+        return React.createElement(C, {
+            ...C.props,
+            ...rest
+        });
+    };
+}
+
+export default Guardian;
