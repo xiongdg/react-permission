@@ -1,8 +1,8 @@
 {
-    "name": "protector",
+    "name": "@westernwood/guardian",
     "exportName": "protector",
     "version": "0.0.1",
-    "description": "scaffolding-lib",
+    "description": "react permissions",
     "main": "index.js",
     "repository": "#",
     "author": "leiwenpeng <15608071173@163.com>",
@@ -15,7 +15,8 @@
         "lint:fix": "eslint --ext .js,.jsx,.ts src/ --fix",
         "lint:output": "eslint --ext .js,.jsx,.ts src/ --color -o report.html -f html",
         "prettier": "prettier --list-different src/**/*",
-        "prettier:fix": "prettier --write src/**/*"
+        "prettier:fix": "prettier --write src/**/*",
+        "jest": "jest"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
@@ -24,7 +25,6 @@
         "@babel/preset-env": "^7.5.5",
         "@types/jest": "^24.0.17",
         "babel-eslint": "^10.0.2",
-        "chalk": "^2.4.2",
         "cross-env": "^5.2.0",
         "dotenv": "^8.0.0",
         "eslint": "^6.1.0",
@@ -42,5 +42,8 @@
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-replace": "^2.2.0",
         "rollup-plugin-url": "^2.2.2"
+    },
+    "dependencies": {
+        "react": "^16.9.0"
     }
 }
