@@ -1,12 +1,19 @@
+/**
+ * @author Ray
+ * @description 权限的入口组件
+ */
 import React from 'react';
 
-function Guardian() {
-    return function({ children: C, ...rest }) {
-        return React.createElement(C, {
-            ...C.props,
-            ...rest
-        });
-    };
-}
+export const Context = React.createContext([]);
 
-export default Guardian;
+export default function(props) {
+    return (
+        <Context.Provider
+            value={{
+                permissions: []
+            }}
+        >
+            {props.children}
+        </Context.Provider>
+    );
+}
