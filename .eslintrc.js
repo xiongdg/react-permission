@@ -3,7 +3,7 @@
  */
 module.exports = {
     plugins: ['react'],
-    extends: ['eslint:recommended', 'prettier'],
+    extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
     parser: 'babel-eslint',
     env: {
         browser: true,
@@ -18,5 +18,7 @@ module.exports = {
             experimentalObjectRestSpread: true
         }
     },
-    rules: {}
+    rules: {
+        'react/prop-types': 0
+    }
 };

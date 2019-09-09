@@ -2,35 +2,111 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
     typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
     (global = global || self, factory(global.guardian = {}, global.React));
-}(this, function (exports, React$1) { 'use strict';
+}(this, function (exports, React) { 'use strict';
 
-    React$1 = React$1 && React$1.hasOwnProperty('default') ? React$1['default'] : React$1;
+    var React__default = 'default' in React ? React['default'] : React;
 
     /**
      * @author Ray
      * @description Context
      */
-    var Context = React$1.createContext({
+    var ReactAuthContext = React__default.createContext({
       permissions: []
     });
 
     /**
      * @author Ray
-     * @description 权限的入口组件
+     * @description 提供一个权限使用的上下文
      */
-    function index () {
-      return function (_ref) {
-        var permissions = _ref.permissions,
-            children = _ref.children;
-        return React.createElement(Context.Provider, {
-          value: {
-            permissions: permissions
-          }
-        }, children);
-      };
+    function Provider(_ref) {
+      var children = _ref.children,
+          context = _ref.context,
+          permissions = _ref.permissions;
+      var Context = ReactAuthContext;
+      React.useEffect(function () {}, []);
+
+      if (context) {
+        Context = context;
+      }
+
+      return React__default.createElement(Context.Provider, {
+        value: {
+          permissions: permissions
+        }
+      }, children);
     }
 
-    exports.default = index;
+    function _defineProperty(obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
+
+      return obj;
+    }
+
+    function ownKeys(object, enumerableOnly) {
+      var keys = Object.keys(object);
+
+      if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        if (enumerableOnly) symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+        keys.push.apply(keys, symbols);
+      }
+
+      return keys;
+    }
+
+    function _objectSpread2(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i] != null ? arguments[i] : {};
+
+        if (i % 2) {
+          ownKeys(source, true).forEach(function (key) {
+            _defineProperty(target, key, source[key]);
+          });
+        } else if (Object.getOwnPropertyDescriptors) {
+          Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+        } else {
+          ownKeys(source).forEach(function (key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+          });
+        }
+      }
+
+      return target;
+    }
+
+    /**
+     * @description 返回一个新的组建，适用于函数组件
+     * @param authKey
+     * @returns {function(*): Function}
+     */
+
+    var withPermission = function withPermission(authKey) {
+      return function (wrapComponent) {
+        return function (props) {
+          var authKeys = React.useContext(ReactAuthContext);
+
+          if (authKey in authKeys) {
+            return wrapComponent(_objectSpread2({}, props));
+          }
+
+          return null;
+        };
+      };
+    };
+
+    exports.Provider = Provider;
+    exports.withPermission = withPermission;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -4,6 +4,8 @@
  */
 import React from 'react';
 
-export default React.createContext({
+export const ReactAuthContext = React.createContext({
     permissions: []
 });
+
+export default ReactAuthContext;
