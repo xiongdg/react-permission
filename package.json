@@ -36,7 +36,6 @@
         "lint-staged": "^9.2.1",
         "prettier": "^1.18.2",
         "prop-types": "^15.7.2",
-        "react": "^16.9.0",
         "rollup": "^1.18.0",
         "rollup-plugin-alias": "^1.5.2",
         "rollup-plugin-babel": "^4.3.3",
@@ -48,5 +47,7 @@
         "rollup-plugin-url": "^2.2.2"
     },
     "dependencies": {},
-    "peerDependencies": {}
+    "peerDependencies": {
+        "react": ">=16.8.0"
+    }
 }

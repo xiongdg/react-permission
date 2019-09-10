@@ -41,19 +41,53 @@
       }, children);
     }
 
-    /**
-     * @author Ray
-     * @description 获取context中存储的permission，判断如何处理包含的子组件。
-     */
-    /**
-     * @description 使用上下文对象获取顶层注入的权限代码
-     * @param key
-     * @param key
-     * @returns {function(*): function(*): *}
-     */
+    function _defineProperty(obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
 
-    function withAuth(component) {
-      return component;
+      return obj;
+    }
+
+    function ownKeys(object, enumerableOnly) {
+      var keys = Object.keys(object);
+
+      if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        if (enumerableOnly) symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+        keys.push.apply(keys, symbols);
+      }
+
+      return keys;
+    }
+
+    function _objectSpread2(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i] != null ? arguments[i] : {};
+
+        if (i % 2) {
+          ownKeys(source, true).forEach(function (key) {
+            _defineProperty(target, key, source[key]);
+          });
+        } else if (Object.getOwnPropertyDescriptors) {
+          Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+        } else {
+          ownKeys(source).forEach(function (key) {
+            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+          });
+        }
+      }
+
+      return target;
     }
 
     /**
@@ -68,6 +102,27 @@
     function useAuth() {
       var context = React.useContext(ReactAuthContext);
       return context;
+    }
+
+    /**
+     *
+     * @param key
+     * @returns {function(*): function(*): (boolean|*)}
+     */
+
+    function withAuth(key) {
+      /**
+       * @param component
+       */
+      return function (component) {
+        /**
+         * @param props
+         */
+        return function wrap(props) {
+          var keys = useAuth();
+          return key in keys && component(_objectSpread2({}, props));
+        };
+      };
     }
 
     exports.Provider = Provider;
