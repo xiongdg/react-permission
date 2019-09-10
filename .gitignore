@@ -10,3 +10,5 @@ build
 # lock file
 *.lock
 package-lock.json
+/.idea
+/.vscode
