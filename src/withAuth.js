@@ -2,18 +2,27 @@
  * @author Ray
  * @description 获取context中存储的permission，判断如何处理包含的子组件。
  */
-import { useContext } from 'react';
-import ReactAuthContext from './Context';
+import useAuth from './hooks/useAuth';
 
 /**
- * @description 返回一个新的组建，适用于函数组件
- * @param authKey
- * @returns {function(*): Function}
+ *
+ * @param key
+ * @returns {function(*): function(*): (boolean|*)}
  */
-export const withAuth = key => component => props => {
-    const Context = useContext(ReactAuthContext);
-    let inFlag = key in Context.permissions;
-    return inFlag ? component({ ...props }) : null;
-};
+export function withAuth(key) {
+    /**
+     * @param component
+     */
+    return function(component) {
+        /**
+         * @param props
+         */
+        return function wrap(props) {
+            const keys = useAuth();
+
+            return key in keys && component({ ...props });
+        };
+    };
+}
 
 export default withAuth;

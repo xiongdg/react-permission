@@ -10,6 +10,11 @@
      * @author Ray
      * @description Context
      */
+    /**
+     * @description 权限控制的上下文对象
+     * @type {React.Context<{permissions: []}>}
+     */
+
     var ReactAuthContext = React__default.createContext({
       permissions: []
     });
@@ -36,72 +41,38 @@
       }, children);
     }
 
-    function _defineProperty(obj, key, value) {
-      if (key in obj) {
-        Object.defineProperty(obj, key, {
-          value: value,
-          enumerable: true,
-          configurable: true,
-          writable: true
-        });
-      } else {
-        obj[key] = value;
-      }
+    /**
+     * @author Ray
+     * @description 获取context中存储的permission，判断如何处理包含的子组件。
+     */
+    /**
+     * @description 使用上下文对象获取顶层注入的权限代码
+     * @param key
+     * @param key
+     * @returns {function(*): function(*): *}
+     */
 
-      return obj;
-    }
-
-    function ownKeys(object, enumerableOnly) {
-      var keys = Object.keys(object);
-
-      if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        if (enumerableOnly) symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-        keys.push.apply(keys, symbols);
-      }
-
-      return keys;
-    }
-
-    function _objectSpread2(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i] != null ? arguments[i] : {};
-
-        if (i % 2) {
-          ownKeys(source, true).forEach(function (key) {
-            _defineProperty(target, key, source[key]);
-          });
-        } else if (Object.getOwnPropertyDescriptors) {
-          Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-        } else {
-          ownKeys(source).forEach(function (key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-          });
-        }
-      }
-
-      return target;
+    function withAuth(component) {
+      return component;
     }
 
     /**
-     * @description 返回一个新的组建，适用于函数组件
-     * @param authKey
-     * @returns {function(*): Function}
+     * @author ray
+     * @description 获取权限
+     */
+    /**
+     *
+     * @returns {{permissions: *[]}}
      */
 
-    var withAuth = function withAuth(key) {
-      return function (component) {
-        return function (props) {
-          var Context = React.useContext(ReactAuthContext);
-          var inFlag = key in Context.permissions;
-          return inFlag ? component(_objectSpread2({}, props)) : null;
-        };
-      };
-    };
+    function useAuth() {
+      var context = React.useContext(ReactAuthContext);
+      return context;
+    }
 
     exports.Provider = Provider;
+    exports.ReactAuthContext = ReactAuthContext;
+    exports.useAuth = useAuth;
     exports.withAuth = withAuth;
 
     Object.defineProperty(exports, '__esModule', { value: true });
