@@ -18,16 +18,27 @@ dotenv.config({
 module.exports = {
     input: 'src/index.js',
     external: Object.keys(pkg.peerDependencies || {}),
-    output: {
-        name: `${pkg.export}`,
-        file: `${process.env.BUILD_PATH}/${pkg.export}.umd.js`,
-        format: 'umd',
-        moduleName: pkg.export,
-        globals: {
-            react: 'React'
+    output: [
+        {
+            name: `${pkg.export}`,
+            file: `${process.env.BUILD_PATH}/${pkg.export}.cjs.js`,
+            format: 'cjs',
+            globals: {
+                react: 'React'
+            },
+            exports: 'named'
         },
-        exports: 'named'
-    },
+        {
+            name: `${pkg.export}`,
+            file: `${process.env.BUILD_PATH}/${pkg.export}.umd.js`,
+            format: 'umd',
+            moduleName: pkg.export,
+            globals: {
+                react: 'React'
+            },
+            exports: 'named'
+        }
+    ],
     plugins: [
         babel({
             include: ['src/**/*'],

@@ -48,6 +48,11 @@
     },
     "dependencies": {},
     "peerDependencies": {
-        "react": ">=16.8.0"
-    }
+        "react": "^16.9.0"
+    },
+    "files": [
+        "dist",
+        "index.js",
+        "package.json"
+    ]
 }
