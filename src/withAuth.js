@@ -10,13 +10,10 @@ import ReactAuthContext from './Context';
  * @param authKey
  * @returns {function(*): Function}
  */
-export const withPermission = authKey => wrapComponent => props => {
-    const authKeys = useContext(ReactAuthContext);
-
-    if (authKey in authKeys) {
-        return wrapComponent({ ...props });
-    }
-    return null;
+export const withAuth = key => component => props => {
+    const Context = useContext(ReactAuthContext);
+    let inFlag = key in Context.permissions;
+    return inFlag ? component({ ...props }) : null;
 };
 
-export default withPermission;
+export default withAuth;
