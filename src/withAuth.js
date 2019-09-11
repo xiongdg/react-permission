@@ -20,7 +20,7 @@ export function withAuth(key) {
         return function wrap(props) {
             const { permissions } = useAuth();
 
-            return key in permissions && component({ ...props });
+            return key in permissions ? component({ ...props }) : null;
         };
     };
 }

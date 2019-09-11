@@ -122,7 +122,7 @@
           var _useAuth = useAuth(),
               permissions = _useAuth.permissions;
 
-          return key in permissions && component(_objectSpread2({}, props));
+          return key in permissions ? component(_objectSpread2({}, props)) : null;
         };
       };
     }
