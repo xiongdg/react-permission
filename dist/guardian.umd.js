@@ -119,8 +119,10 @@
          * @param props
          */
         return function wrap(props) {
-          var keys = useAuth();
-          return key in keys && component(_objectSpread2({}, props));
+          var _useAuth = useAuth(),
+              permissions = _useAuth.permissions;
+
+          return key in permissions && component(_objectSpread2({}, props));
         };
       };
     }

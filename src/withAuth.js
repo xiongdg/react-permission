@@ -18,9 +18,9 @@ export function withAuth(key) {
          * @param props
          */
         return function wrap(props) {
-            const keys = useAuth();
+            const { permissions } = useAuth();
 
-            return key in keys && component({ ...props });
+            return key in permissions && component({ ...props });
         };
     };
 }
