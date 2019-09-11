@@ -3,7 +3,7 @@
  * @description 获取context中存储的permission，判断如何处理包含的子组件。
  */
 import useAuth from './hooks/useAuth';
-
+import { inArray } from '@westernwood/utils';
 /**
  *
  * @param key
@@ -20,7 +20,7 @@ export function withAuth(key) {
         return function wrap(props) {
             const { permissions } = useAuth();
 
-            return key in permissions ? component({ ...props }) : null;
+            return inArray(key, permissions) ? component({ ...props }) : null;
         };
     };
 }

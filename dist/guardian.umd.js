@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'react'], factory) :
-    (global = global || self, factory(global.guardian = {}, global.React));
-}(this, function (exports, React) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@westernwood/utils')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'react', '@westernwood/utils'], factory) :
+    (global = global || self, factory(global.guardian = {}, global.React, global.utils));
+}(this, function (exports, React, utils) { 'use strict';
 
     var React__default = 'default' in React ? React['default'] : React;
 
@@ -122,7 +122,7 @@
           var _useAuth = useAuth(),
               permissions = _useAuth.permissions;
 
-          return key in permissions ? component(_objectSpread2({}, props)) : null;
+          return utils.inArray(key, permissions) ? component(_objectSpread2({}, props)) : null;
         };
       };
     }

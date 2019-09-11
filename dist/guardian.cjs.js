@@ -6,6 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = require('react');
 var React__default = _interopDefault(React);
+var utils = require('@westernwood/utils');
 
 /**
  * @author Ray
@@ -123,7 +124,7 @@ function withAuth(key) {
       var _useAuth = useAuth(),
           permissions = _useAuth.permissions;
 
-      return key in permissions ? component(_objectSpread2({}, props)) : null;
+      return utils.inArray(key, permissions) ? component(_objectSpread2({}, props)) : null;
     };
   };
 }
