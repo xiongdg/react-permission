@@ -18,14 +18,12 @@ dotenv.config({
 module.exports = {
     input: 'src/index.js',
     external: Object.keys(pkg.peerDependencies || {}),
+    globals: {},
     output: [
         {
             name: `${pkg.export}`,
             file: `${process.env.BUILD_PATH}/${pkg.export}.cjs.js`,
             format: 'cjs',
-            globals: {
-                react: 'React'
-            },
             exports: 'named'
         },
         {
@@ -34,7 +32,8 @@ module.exports = {
             format: 'umd',
             moduleName: pkg.export,
             globals: {
-                react: 'React'
+                react: 'React',
+                '@westernwood/utils': 'utils'
             },
             exports: 'named'
         }
