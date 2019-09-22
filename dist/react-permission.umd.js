@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('@westernwood/utils')) :
     typeof define === 'function' && define.amd ? define(['exports', 'react', '@westernwood/utils'], factory) :
-    (global = global || self, factory(global.guardian = {}, global.React, global.utils));
+    (global = global || self, factory(global['react-permission'] = {}, global.React, global.utils));
 }(this, function (exports, React, utils) { 'use strict';
 
     var React__default = 'default' in React ? React['default'] : React;
@@ -135,4 +135,4 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-//# sourceMappingURL=guardian.umd.js.map
+//# sourceMappingURL=react-permission.umd.js.map

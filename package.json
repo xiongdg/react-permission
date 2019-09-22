@@ -1,7 +1,7 @@
 {
-    "name": "@westernwood/guardian",
+    "name": "@westernwood/react-permissions",
     "export": "guardian",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "react permissions",
     "main": "index.js",
     "repository": "#",
@@ -17,6 +17,10 @@
         "prettier": "prettier --list-different src/**/*",
         "prettier:fix": "prettier --write src/**/*",
         "jest": "jest --passWithNoTests"
+    },
+    "devEnv": {
+        "pkgName": "react-permission",
+        "entry": "./src/index.js"
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
@@ -46,7 +50,6 @@
         "rollup-plugin-replace": "^2.2.0",
         "rollup-plugin-url": "^2.2.2"
     },
-    "dependencies": {},
     "peerDependencies": {
         "@westernwood/utils": "^1.0.2",
         "react": "^16.9.0"

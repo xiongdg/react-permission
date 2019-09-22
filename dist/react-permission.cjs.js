@@ -133,4 +133,4 @@ exports.Provider = Provider;
 exports.ReactAuthContext = ReactAuthContext;
 exports.useAuth = useAuth;
 exports.withAuth = withAuth;
-//# sourceMappingURL=guardian.cjs.js.map
+//# sourceMappingURL=react-permission.cjs.js.map
