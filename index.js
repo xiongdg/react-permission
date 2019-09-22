@@ -1,5 +1,5 @@
-if (global) {
-    module.exports = require('./dist/guardian.cjs');
+if (window) {
+    module.exports = require('./dist/react-permission.umd');
 } else {
-    module.exports = require('./dist/guardian.umd');
+    module.exports = require('./dist/react-permission.cjs');
 }
