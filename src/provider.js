@@ -1,6 +1,6 @@
 /**
  * @author Ray
- * @description 提供一个权限使用的上下文
+ * @description 提供一个权限使用的context
  */
 import React from 'react';
 import { ReactAuthContext } from './context';

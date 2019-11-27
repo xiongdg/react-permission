@@ -10,8 +10,6 @@ import useAuth from './hooks/useAuth';
  * @returns {function(*): function(*): (boolean|*)}
  */
 export function withAuth(key) {
-    /**j
-     */
     return function(component) {
         /**
          * @param props
