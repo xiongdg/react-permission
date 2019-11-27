@@ -2,6 +2,7 @@
  * @author Ray
  * @description 提供一个权限使用的context
  */
+import {} from '@westernwood/utils';
 import React from 'react';
 import { ReactAuthContext } from './context';
 
@@ -13,6 +14,7 @@ import { ReactAuthContext } from './context';
  * @constructor
  */
 export default function Provider({ children, permissions }) {
+    // TODO 支持传入返回permissionkey集合的Promise对象.
     return (
         <ReactAuthContext.Provider value={{ permissions }}>{children}</ReactAuthContext.Provider>
     );
