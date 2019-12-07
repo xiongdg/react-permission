@@ -11,10 +11,6 @@ const { devEnv, peerDependencies } = require('./package.json');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-dotenv.config({
-    path: isDev ? '.env' : '.env.production'
-});
-
 module.exports = {
     input: 'src/index.js',
     external: Object.keys(peerDependencies || {}),
@@ -43,8 +39,7 @@ module.exports = {
             exclude: ['node_modules/**']
         })
     ].concat([
-        // customize your alias here
-        alias({ '@': 'src', utils: 'src/utils' }),
+        alias({ utils: 'src/utils' }),
         replace({ __DEV__: isDev }),
         del({ targets: `dist/*` })
     ])
