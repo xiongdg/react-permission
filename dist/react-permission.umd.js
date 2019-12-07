@@ -69,7 +69,6 @@
   }
 
   var AuthContext = React__default.createContext({});
-
   Provider.defaultProps = {
     children: null,
     permissions: [],

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import AuthContext from './context';
+
+export const AuthContext = React.createContext({});
 
 Provider.defaultProps = {
     children: null,

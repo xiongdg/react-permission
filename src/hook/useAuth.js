@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import AuthContext from '../context';
+import { AuthContext } from '../provider';
 
 export default function useAuth(key) {
     const { permissions } = useContext(AuthContext);

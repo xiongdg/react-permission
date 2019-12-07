@@ -1,6 +1,5 @@
 {
     "name": "@westernwood/react-permissions",
-    "export": "guardian",
     "version": "1.0.1",
     "description": "react permissions",
     "main": "index.js",
