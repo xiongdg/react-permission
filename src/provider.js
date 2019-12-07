@@ -1,21 +1,28 @@
-/**
- * @author Ray
- * @description 提供一个权限使用的context
- */
-import {} from '@westernwood/utils';
-import React from 'react';
-import { ReactAuthContext } from './context';
+import React, { useEffect, useState } from 'react';
+import AuthContext from './context';
 
-/**
- * @description 顶层组件，将权限代码传向整个组件数。
- * @param children
- * @param permissions
- * @returns {*}
- * @constructor
- */
-export default function Provider({ children, permissions }) {
-    // TODO 支持传入返回permissionkey集合的Promise对象.
+Provider.defaultProps = {
+    children: null,
+    permissions: [],
+    fetchPermissions: () => Promise.resolve([]),
+    parser: () => []
+};
+
+export default function Provider({ children, fetchPermissions, permissions, parser }) {
+    const [permissionKeys, setPermissions] = useState(permissions);
+    useEffect(() => {
+        fetchPermissions().then(res => {
+            setPermissions([...new Set(permissions, ...parser(res))]);
+        });
+    }, []);
     return (
-        <ReactAuthContext.Provider value={{ permissions }}>{children}</ReactAuthContext.Provider>
+        <AuthContext.Provider
+            value={{
+                permissions: permissionKeys,
+                setPermissions // 提供在子组件中修改权限的一个方法
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
     );
 }

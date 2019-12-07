@@ -10,17 +10,64 @@
     "private": false,
     "scripts": {
         "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js --watch --sourcemap",
-        "build": "cross-env NODE_ENV=production rollup -c rollup.config.js --sourcemap",
+        "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
         "lint": "eslint --ext .js,.jsx,.ts src/",
         "lint:fix": "eslint --ext .js,.jsx,.ts src/ --fix",
         "lint:output": "eslint --ext .js,.jsx,.ts src/ --color -o report.html -f html",
         "prettier": "prettier --list-different src/**/*",
         "prettier:fix": "prettier --write src/**/*",
-        "jest": "jest --passWithNoTests"
+        "test": "jest --passWithNoTests"
     },
     "devEnv": {
         "pkgName": "react-permission",
         "entry": "./src/index.js"
+    },
+    "files": [
+        "dist",
+        "index.js",
+        "README.md",
+        "package.json"
+    ],
+    "browserslist": [
+        "last 1 version",
+        "> 1%",
+        "maintained node versions",
+        "not dead"
+    ],
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "jest": {
+        "globals": {},
+        "moduleFileExtensions": [
+            "js",
+            "jsx",
+            "ts",
+            "tsx",
+            "json",
+            "node"
+        ],
+        "testMatch": [
+            "<rootDir>/test/**/*"
+        ],
+        "transform": {
+            "^.+\\.jsx?$": "babel-jest"
+        },
+        "testEnvironment": "node",
+        "collectCoverage": true
+    },
+    "lint-staged": {
+        "src/**/*.{js,jsx,ts,tsx}": [
+            "yarn prettier:fix",
+            "yarn lint:fix",
+            "yarn test",
+            "git add"
+        ],
+        "*.lock": [
+            "git rm --cahced"
+        ]
     },
     "devDependencies": {
         "@babel/core": "^7.5.5",
@@ -53,14 +100,5 @@
     "peerDependencies": {
         "@westernwood/utils": "^1.0.2",
         "react": "^16.9.0"
-    },
-    "files": [
-        "dist",
-        "index.js",
-        "README.md",
-        "package.json"
-    ],
-    "dependencies": {
-        "@westernwood/utils": "^1.0.2"
     }
 }
