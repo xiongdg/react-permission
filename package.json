@@ -20,7 +20,8 @@
     },
     "devEnv": {
         "pkgName": "react-permission",
-        "entry": "./src/index.js"
+        "entry": "./src/index.js",
+        "build": "dist"
     },
     "files": [
         "dist",

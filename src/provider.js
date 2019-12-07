@@ -12,7 +12,8 @@ export default function Provider({ children, fetchPermissions, permissions, pars
     const [permissionKeys, setPermissions] = useState(permissions);
     useEffect(() => {
         fetchPermissions().then(res => {
-            setPermissions([...new Set(permissions, ...parser(res))]);
+            let parsedData = parser(res);
+            setPermissions([...new Set([...permissions, ...parsedData])]);
         });
     }, []);
     return (

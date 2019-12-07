@@ -2,7 +2,6 @@
  * @author Ray
  */
 
-const dotenv = require('dotenv');
 const babel = require('rollup-plugin-babel');
 const del = require('rollup-plugin-delete');
 const alias = require('rollup-plugin-alias');
@@ -17,13 +16,13 @@ module.exports = {
     output: [
         {
             name: `${devEnv.pkgName}`,
-            file: `${process.env.BUILD_PATH}/${devEnv.pkgName}.cjs.js`,
+            file: `${devEnv.build}/${devEnv.pkgName}.cjs.js`,
             format: 'cjs',
             exports: 'named'
         },
         {
             name: `${devEnv.pkgName}`,
-            file: `${process.env.BUILD_PATH}/${devEnv.pkgName}.umd.js`,
+            file: `${devEnv.build}/${devEnv.pkgName}.umd.js`,
             format: 'umd',
             moduleName: devEnv.pkgName,
             globals: {
