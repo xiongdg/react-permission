@@ -105,7 +105,15 @@
     }, children);
   }
 
+  function useAuth(key) {
+    var _useContext = React.useContext(AuthContext),
+        permissions = _useContext.permissions;
+
+    return permissions.includes(key); // 是否存在当前接收到的key
+  }
+
   exports.Provider = Provider;
+  exports.useAuth = useAuth;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
