@@ -1,7 +1,9 @@
 import { useContext } from 'react';
 import { AuthContext } from '../provider';
+import { find } from '../utils';
+import { UNPERMITTED } from '../defaults';
 
-export default function useAuth(key) {
+export default function usePermissions(key) {
     const { permissions } = useContext(AuthContext);
-    return permissions.includes(key); // 是否存在当前接收到的key
+    return find(permissions, key) !== UNPERMITTED;
 }

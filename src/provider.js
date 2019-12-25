@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 export const AuthContext = React.createContext({});
 
 Provider.defaultProps = {
     children: null,
     permissions: [],
-    fetchPermissions: () => Promise.resolve([]),
-    parser: () => []
+    fallback: () => null
 };
 
-export default function Provider({ children, fetchPermissions, permissions, parser }) {
+export default function Provider({ children, permissions, fallback }) {
     const [permissionKeys, setPermissions] = useState(permissions);
-    useEffect(() => {
-        fetchPermissions().then(res => {
-            let parsedData = parser(res);
-            setPermissions([...new Set([...permissions, ...parsedData])]);
-        });
-    }, []);
+
     return (
         <AuthContext.Provider
             value={{
                 permissions: permissionKeys,
-                setPermissions // 提供在子组件中修改权限的一个方法
+                setPermissions, // 提供在子组件中修改权限的一个方法
+                fallback
             }}
         >
             {children}

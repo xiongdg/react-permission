@@ -1,9 +1,11 @@
-/**
- * 提供class组件的装饰器来实现权限控制
- */
+import { useContext, useState, useEffect } from 'react';
+import { defaults } from './defaults';
+import { AuthContext } from './provider';
+import { filterChildElementByPermission } from './utils';
 
-export default function permissions(target) {
-    // const { permissions } = useContext();
-    console.log(target);
-    target.isTestable = true;
+export default function Permission(props) {
+    const _props = Object.assign({}, defaults, props, useContext(AuthContext));
+    const [ChildElements, setChildElements] = useState(_props.children);
+    useEffect(() => setChildElements(filterChildElementByPermission(_props)), [_props.permissions]);
+    return ChildElements;
 }
