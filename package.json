@@ -53,7 +53,8 @@
             "<rootDir>/test/**/*"
         ],
         "transform": {
-            "^.+\\.jsx?$": "babel-jest"
+            "^.+\\.jsx?$": "babel-jest",
+            "^.+\\.tsx?$": "ts-jest"
         },
         "testEnvironment": "node",
         "collectCoverage": true
