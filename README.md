@@ -9,12 +9,12 @@ import ReactDOM from 'react-dom';
 import { Permission } from 'react-permissions';
 
 ReactDOM.render(
-    <Permission fallback={() => <h1>权限不足</h1>} permissions={[1, 2, 3]}>
-        <div permission={1}>权限1</div> //
-        <div permission={2}>权限2</div> //
-        <div permission={4}>权限4</div> // 展示权限不足
-    </Permission>,
-    document.getElementById('root')
+  <Permission fallback={() => <h1>权限不足</h1>} permissions={[1, 2, 3]}>
+    <div permission={1}>权限1</div> //
+    <div permission={2}>权限2</div> //
+    <div permission={4}>权限4</div> // 展示权限不足
+  </Permission>,
+  document.getElementById('root')
 );
 
 /**

@@ -1,102 +1,102 @@
 {
-    "name": "@westernwood/react-permissions",
-    "version": "1.0.2",
-    "description": "react permissions",
-    "main": "dist/react-permission.umd.js",
-    "repository": "#",
-    "author": "leiwenpeng <15608071173@163.com>",
-    "license": "MIT",
-    "private": false,
-    "scripts": {
-        "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js --watch --sourcemap",
-        "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
-        "lint": "eslint --ext .js,.jsx,.ts src/",
-        "lint:fix": "eslint --ext .js,.jsx,.ts src/ --fix",
-        "lint:output": "eslint --ext .js,.jsx,.ts src/ --color -o report.html -f html",
-        "prettier": "prettier --list-different src/**/*",
-        "prettier:fix": "prettier --write src/**/*",
-        "test": "jest --passWithNoTests"
-    },
-    "devEnv": {
-        "pkgName": "react-permission",
-        "entry": "./src/index.js",
-        "build": "dist"
-    },
-    "files": [
-        "dist",
-        "README.md",
-        "package.json"
-    ],
-    "browserslist": [
-        "last 1 version",
-        "> 1%",
-        "maintained node versions",
-        "not dead"
-    ],
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "jest": {
-        "globals": {},
-        "moduleFileExtensions": [
-            "js",
-            "jsx",
-            "ts",
-            "tsx",
-            "json",
-            "node"
-        ],
-        "testMatch": [
-            "<rootDir>/test/**/*"
-        ],
-        "transform": {
-            "^.+\\.jsx?$": "babel-jest",
-            "^.+\\.tsx?$": "ts-jest"
-        },
-        "testEnvironment": "node",
-        "collectCoverage": true
-    },
-    "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx}": [
-            "yarn prettier:fix",
-            "yarn lint:fix",
-            "yarn test",
-            "git add"
-        ],
-        "*.lock": [
-            "git rm --cahced"
-        ]
-    },
-    "devDependencies": {
-        "@babel/core": "^7.5.5",
-        "@babel/plugin-proposal-class-properties": "^7.5.5",
-        "@babel/plugin-proposal-decorators": "^7.4.4",
-        "@babel/preset-env": "^7.5.5",
-        "@babel/preset-react": "^7.0.0",
-        "@types/jest": "^24.0.17",
-        "babel-eslint": "^10.0.2",
-        "cross-env": "^5.2.0",
-        "eslint": "^6.1.0",
-        "eslint-config-prettier": "^6.0.0",
-        "eslint-plugin-react": "^7.14.3",
-        "husky": "^3.0.2",
-        "jest": "^24.8.0",
-        "lint-staged": "^9.2.1",
-        "prettier": "^1.18.2",
-        "prop-types": "^15.7.2",
-        "rollup": "^1.18.0",
-        "rollup-plugin-alias": "^1.5.2",
-        "rollup-plugin-babel": "^4.3.3",
-        "rollup-plugin-commonjs": "^10.0.2",
-        "rollup-plugin-delete": "^1.0.0",
-        "rollup-plugin-eslint": "^7.0.0",
-        "rollup-plugin-node-resolve": "^5.2.0",
-        "rollup-plugin-replace": "^2.2.0",
-        "rollup-plugin-url": "^2.2.2"
-    },
-    "peerDependencies": {
-        "react": "^16.9.0"
+  "name": "@westernwood/react-permissions",
+  "version": "1.0.2",
+  "description": "react permissions",
+  "main": "dist/react-permission.umd.js",
+  "repository": "#",
+  "author": "leiwenpeng <15608071173@163.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development rollup -c rollup.config.js --watch --sourcemap",
+    "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
+    "lint": "eslint --ext .js,.jsx,.ts src/",
+    "lint:fix": "eslint --ext .js,.jsx,.ts src/ --fix",
+    "lint:output": "eslint --ext .js,.jsx,.ts src/ --color -o report.html -f html",
+    "prettier": "prettier --list-different src/**/*",
+    "prettier:fix": "prettier --write src/**/*",
+    "test": "jest --passWithNoTests"
+  },
+  "devEnv": {
+    "pkgName": "react-permission",
+    "entry": "./src/index.js",
+    "build": "dist"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "globals": {},
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "testMatch": [
+      "<rootDir>/test/**/*"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "collectCoverage": true
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn prettier:fix",
+      "yarn lint:fix",
+      "yarn test",
+      "git add"
+    ],
+    "*.lock": [
+      "git rm --cahced"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/jest": "^24.0.17",
+    "babel-eslint": "^10.0.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.2",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
+    "prop-types": "^15.7.2",
+    "rollup": "^1.18.0",
+    "rollup-plugin-alias": "^1.5.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-delete": "^1.0.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-url": "^2.2.2"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0"
+  }
 }

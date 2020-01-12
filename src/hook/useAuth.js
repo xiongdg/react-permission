@@ -4,6 +4,6 @@ import { find } from '../utils';
 import { UNPERMITTED } from '../defaults';
 
 export default function usePermissions(key) {
-    const { permissions } = useContext(AuthContext);
-    return find(permissions, key) !== UNPERMITTED;
+  const { permissions } = useContext(AuthContext);
+  return find(permissions, key) !== UNPERMITTED;
 }
