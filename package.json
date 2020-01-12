@@ -2,7 +2,7 @@
     "name": "@westernwood/react-permissions",
     "version": "1.0.2",
     "description": "react permissions",
-    "main": "index.js",
+    "main": "dist/react-permission.umd.js",
     "repository": "#",
     "author": "leiwenpeng <15608071173@163.com>",
     "license": "MIT",
@@ -24,7 +24,6 @@
     },
     "files": [
         "dist",
-        "index.js",
         "README.md",
         "package.json"
     ],
