@@ -23,7 +23,7 @@ export const find = (values, value) => {
 export const filterChildElementByPermission = _props => {
   const { children, fallback, permissions } = _props;
 
-  let elements = Children.map(children, element => {
+  return Children.map(children, element => {
     const { permission, fallback: _fallback } = element.props;
 
     // eslint-disable-next-line no-undef
@@ -45,6 +45,4 @@ export const filterChildElementByPermission = _props => {
 
     return element;
   });
-
-  return elements;
 };
