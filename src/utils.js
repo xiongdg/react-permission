@@ -1,6 +1,7 @@
 import { Children } from 'react';
 import { UNPERMITTED } from './defaults';
 
+// Find target p-key in p-keys
 export const find = (values, value) => {
   let i = 0,
     j = values.length - 1,
@@ -20,17 +21,20 @@ export const find = (values, value) => {
   return index;
 };
 
+// Filter component by provided p-key according to the p-key list
 export const filterChildElementByPermission = _props => {
+  // Global options.
   const { children, fallback, permissions } = _props;
 
   return Children.map(children, element => {
+    // Element options
     const { permission, fallback: _fallback } = element.props;
 
     // eslint-disable-next-line no-undef
     if (__DEV__) {
       console.log(permissions.join(','), '<-->', permission);
     }
-
+    // Find key index
     let index = find(permissions, permission);
 
     if (UNPERMITTED === index) {
