@@ -26,8 +26,7 @@ module.exports = {
       format: 'umd',
       moduleName: devEnv.pkgName,
       globals: {
-        react: 'React',
-        '@westernwood/utils': 'utils'
+        react: 'React'
       },
       exports: 'named'
     }

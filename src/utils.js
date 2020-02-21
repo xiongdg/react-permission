@@ -22,6 +22,7 @@ export const find = (values, value) => {
 };
 
 // Filter component by provided p-key according to the p-key list
+// We assume key-list is a Array
 export const filterChildElementByPermission = _props => {
   // Global options.
   const { children, fallback, permissions } = _props;
@@ -29,24 +30,19 @@ export const filterChildElementByPermission = _props => {
   return Children.map(children, element => {
     // Element options
     const { permission, fallback: _fallback } = element.props;
-
-    // eslint-disable-next-line no-undef
-    if (__DEV__) {
-      console.log(permissions.join(','), '<-->', permission);
-    }
     // Find key index
     let index = find(permissions, permission);
-
     if (UNPERMITTED === index) {
       // do something if un permitted
-      let showFallback = fallback || _fallback;
-      if (typeof showFallback === 'function') {
-        return showFallback();
-      } else {
+      try {
+        let showFallback = fallback || _fallback;
+        if (typeof showFallback === 'function') {
+          return showFallback();
+        }
+      } catch (e) {
         throw TypeError('fallback 必须是一个合法的react组件');
       }
     }
-
     return element;
   });
 };
