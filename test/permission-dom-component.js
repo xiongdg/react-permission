@@ -307,12 +307,6 @@ describe('filterChildrenElementByPermission should return the correct children',
     return isAuth && <h1>2</h1>;
   }
 
-  function ComponentUseAuth6() {
-    const isAuth = useAuth(6);
-
-    return isAuth && <h1>6</h1>;
-  }
-
   function ComponentWithPermission7() {
     return <h1>7</h1>;
   }
