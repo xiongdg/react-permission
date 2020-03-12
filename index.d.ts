@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 type Props = {
-  permission: String | Number;
-  callback: Function;
+	permission: String | Number;
+	callback: Function;
 };
 
 export class PermissionProvider extends React.Component<Props, any> {}

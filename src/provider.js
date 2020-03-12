@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 export const AuthContext = React.createContext({});
 
-Provider.defaultProps = {
-  children: null,
-  permissions: [],
-  fallback: () => null
+export const ProviderProps = {
+  children: PropTypes.arrayOf(PropTypes.element),
+  permissions: PropTypes.arrayOf(PropTypes.number),
+  fallback: PropTypes.element
 };
 
-export default function Provider({ children, permissions, fallback }) {
-  const [permissionKeys, setPermissions] = useState(permissions);
+export const ProviderDefaultProps = {
+  children: null,
+  permissions: [],
+  fallback: <Fragment />
+};
 
+Provider.propTypes = {};
+
+Provider.defaultProps = ProviderDefaultProps;
+
+export default function Provider({ children, permissions, fallback }) {
   return (
     <AuthContext.Provider
       value={{
-        permissions: permissionKeys,
-        setPermissions, // 提供在子组件中修改权限的一个方法
-        fallback
+        fallback,
+        permissions
       }}
     >
       {children}

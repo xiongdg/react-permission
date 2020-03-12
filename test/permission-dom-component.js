@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { Permission } from '../src';
-import Provider, { AuthContext } from '../src/provider';
+import Provider from '../src/provider';
 import useAuth from '../src/hook/useAuth';
-import { filterChildElementByPermission } from '../src/utils';
-import { defaults } from '../src/defaults';
 
 describe('Permission without Provider and with permissions [1,2,3,4,5]', () => {
   let container;
@@ -220,10 +218,10 @@ describe('Permission with Provider and with permissions [1,2,3,4,5]', () => {
     let Component = () => (
       <Provider permissions={permissions}>
         <Permission>
-          <h1 permission={1}>1</h1>
-          <h1 permission={6}>2</h1>
-          <h1 permission={7}>3</h1>
-          <h1 permission={8}>4</h1>
+          <h1 data-permission={1}>1</h1>
+          <h1 data-permission={6}>2</h1>
+          <h1 data-permission={7}>3</h1>
+          <h1 data-permission={8}>4</h1>
           <MockComponent permission={5} />
         </Permission>
       </Provider>
@@ -315,19 +313,13 @@ describe('filterChildrenElementByPermission should return the correct children',
     return <h1>fallback</h1>;
   }
 
-  function FilterChildren(props) {
-    const _props = Object.assign({}, defaults, props, useContext(AuthContext));
-
-    return filterChildElementByPermission(_props);
-  }
-
   function Root({ fallback }) {
     return (
       <Provider permissions={permissions} fallback={fallback}>
-        <FilterChildren>
+        <Permission>
           <ComponentUseAuth2 />
           <ComponentWithPermission7 permission={7} />
-        </FilterChildren>
+        </Permission>
       </Provider>
     );
   }
@@ -354,7 +346,7 @@ describe('filterChildrenElementByPermission should return the correct children',
 
   it('should render a fallback Component', () => {
     ReactTestUtils.act(() => {
-      ReactDOM.render(<Root fallback={() => <FallbackComponent />} />, container);
+      ReactDOM.render(<Root fallback={<FallbackComponent />} />, container);
     });
 
     const h1s = document.body.querySelectorAll('h1');
