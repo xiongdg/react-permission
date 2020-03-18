@@ -1,6 +1,6 @@
 {
   "name": "@westernwood/react-permissions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "react permissions",
   "main": "dist/react-permission.umd.js",
   "repository": "#",
