@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
 import { Permission } from '../src';
 import Provider from '../src/provider';
-import useAuth from '../src/hook/useAuth';
 
 describe('Permission without Provider and with permissions [1,2,3,4,5]', () => {
   let container;
@@ -235,75 +234,9 @@ describe('Permission with Provider and with permissions [1,2,3,4,5]', () => {
   });
 });
 
-describe('UseAuth with Provider with permissions, [1,2,3,4,5]', () => {
-  let permissions = [1, 2, 3, 4, 5],
-    container;
-
-  function ComponentUseAuth2() {
-    const isAuth = useAuth(2);
-
-    return isAuth && <h1>2</h1>;
-  }
-
-  function ComponentUseAuth6() {
-    const isAuth = useAuth(6);
-
-    return isAuth && <h1>2</h1>;
-  }
-
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
-  afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
-  });
-
-  it('should render Component with permission 2', () => {
-    ReactTestUtils.act(() => {
-      ReactDOM.render(
-        <Provider permissions={permissions}>
-          <div>
-            <ComponentUseAuth2 />
-          </div>
-        </Provider>,
-        container
-      );
-    });
-
-    const h1s = document.body.querySelectorAll('h1');
-
-    expect(h1s[0].innerHTML).toEqual('2');
-  });
-
-  it('No component will be render', () => {
-    ReactTestUtils.act(() => {
-      ReactDOM.render(
-        <Provider permissions={permissions}>
-          <div>
-            <ComponentUseAuth6 />
-          </div>
-        </Provider>,
-        container
-      );
-    });
-
-    const h1s = document.body.querySelectorAll('h1');
-
-    expect(h1s.length).toEqual(0);
-  });
-});
-
 describe('filterChildrenElementByPermission should return the correct children', () => {
   let permissions = [1, 2, 3, 4, 5],
     container;
-
-  function ComponentUseAuth2() {
-    const isAuth = useAuth(2);
-
-    return isAuth && <h1>2</h1>;
-  }
 
   function ComponentWithPermission7() {
     return <h1>7</h1>;
@@ -317,7 +250,7 @@ describe('filterChildrenElementByPermission should return the correct children',
     return (
       <Provider permissions={permissions} fallback={fallback}>
         <Permission>
-          <ComponentUseAuth2 />
+          <h1>12</h1>
           <ComponentWithPermission7 permission={7} />
         </Permission>
       </Provider>
@@ -332,16 +265,6 @@ describe('filterChildrenElementByPermission should return the correct children',
   afterEach(() => {
     document.body.removeChild(container);
     container = null;
-  });
-
-  it('should render ComponentUseAuth2', () => {
-    ReactTestUtils.act(() => {
-      ReactDOM.render(<Root />, container);
-    });
-
-    const h1s = document.body.querySelectorAll('h1');
-    expect(h1s.length).toEqual(1);
-    expect(h1s[0].innerHTML).toEqual('2');
   });
 
   it('should render a fallback Component', () => {

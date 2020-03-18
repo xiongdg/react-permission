@@ -1,4 +1,3 @@
-// Find target p-key in p-keys
 export const find = (values, value) => {
   let i = 0,
     j = values.length - 1,
