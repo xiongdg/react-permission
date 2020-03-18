@@ -6,5 +6,4 @@ type Props = {
 };
 
 export class PermissionProvider extends React.Component<Props, any> {}
-export class Permission extends React.Component<checkPropTypes, any> {}
-export function usePermissions(): Boolean;
+export class Permission extends React.Component<Props, any> {}

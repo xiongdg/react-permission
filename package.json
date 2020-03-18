@@ -17,6 +17,9 @@
     "prettier:fix": "prettier --write src/**/*",
     "test": "jest --passWithNoTests"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devEnv": {
     "pkgName": "react-permission",
     "entry": "./src/index.js",
